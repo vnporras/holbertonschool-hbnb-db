@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data.json:/app/data.json
+      - ./data.pkl:/app/data.pkl
+    environment:
+      - DATABASE_URL=mysql+mysqlconnector://hbnb:p4ssw0rD@db:3306/app
+      - PORT=3000
+    depends_on:
+      db:
+        condition: service_healthy  # Wait for db service to be healthy
+        restart: true
+
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: imposssible-to-guess
+      MYSQL_DATABASE: app
+      MYSQL_USER: hbnb
+      MYSQL_PASSWORD: p4ssw0rD
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s

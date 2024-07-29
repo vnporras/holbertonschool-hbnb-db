@@ -1,0 +1,79 @@
+-- CREATE TABLE IF NOT EXISTS user (
+--     id VARCHAR(255) NOT NULL,
+--     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--     email VARCHAR(255) NOT NULL UNIQUE,
+--     password VARCHAR(255) NOT NULL,
+--     first_name VARCHAR(255) NOT NULL,
+--     last_name VARCHAR(255) NOT NULL,
+--     is_admin BOOLEAN DEFAULT FALSE,
+--     PRIMARY KEY (id)
+-- );
+
+-- CREATE TABLE IF NOT EXISTS country (
+--     name VARCHAR(255) NOT NULL UNIQUE,
+--     code VARCHAR(2) NOT NULL,
+--     PRIMARY KEY (code)
+-- );
+
+-- CREATE TABLE IF NOT EXISTS city (
+--     id VARCHAR(255) NOT NULL,
+--     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--     name VARCHAR(255) NOT NULL,
+--     country_code VARCHAR(2) NOT NULL,
+--     PRIMARY KEY (id),
+--     FOREIGN KEY (country_code) REFERENCES country(code)
+-- );
+
+-- CREATE TABLE IF NOT EXISTS place (
+--     id VARCHAR(255) NOT NULL,
+--     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--     name VARCHAR(255) NOT NULL,
+--     description VARCHAR(255) NOT NULL,
+--     address VARCHAR(255) NOT NULL,
+--     latitude FLOAT NOT NULL,
+--     longitude FLOAT NOT NULL,
+--     host_id VARCHAR(255) NOT NULL,
+--     city_id VARCHAR(255) NOT NULL,
+--     price_per_night INT NOT NULL,
+--     number_of_rooms INT NOT NULL,
+--     number_of_bathrooms INT NOT NULL,
+--     max_guests INT NOT NULL,
+--     PRIMARY KEY (id),
+--     FOREIGN KEY (host_id) REFERENCES user(id),
+--     FOREIGN KEY (city_id) REFERENCES city(id)
+-- );
+
+-- CREATE TABLE IF NOT EXISTS amenity (
+--     id VARCHAR(255) NOT NULL,
+--     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--     name VARCHAR(255) NOT NULL UNIQUE,
+--     PRIMARY KEY (id)
+-- );
+
+-- CREATE TABLE IF NOT EXISTS place_amenity (
+--     id VARCHAR(255) NOT NULL,
+--     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--     place_id VARCHAR(255) NOT NULL,
+--     amenity_id VARCHAR(255) NOT NULL,
+--     PRIMARY KEY (id),
+--     FOREIGN KEY (place_id) REFERENCES place(id),
+--     FOREIGN KEY (amenity_id) REFERENCES amenity(id)
+-- );
+
+-- CREATE TABLE IF NOT EXISTS review (
+--     id VARCHAR(255) NOT NULL,
+--     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+--     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+--     place_id VARCHAR(255) NOT NULL,
+--     user_id VARCHAR(255) NOT NULL,
+--     comment VARCHAR(255) NOT NULL,
+--     rating FLOAT NOT NULL,
+--     PRIMARY KEY (id),
+--     FOREIGN KEY (place_id) REFERENCES place(id),
+--     FOREIGN KEY (user_id) REFERENCES user(id)
+-- );

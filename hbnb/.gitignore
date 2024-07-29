@@ -1,0 +1,14 @@
+venv
+.venv
+.env
+
+__pycache__
+*.pyc
+
+data.json
+data.pkl
+
+data/
+
+test_file*
+.mypy_cache/

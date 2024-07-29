@@ -1,0 +1,14 @@
+.gitignore
+requirements.dev.txt
+README.md
+
+venv/
+.venv/
+tests/
+instance/
+checker_tests/
+
+__pycache__/
+
+manage.py
+
